@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preview - Betteridge Sapphires Welcome Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#B08D45;--cream:#F7F3EB;
+  --bg:#040C18;--muted:rgba(247,243,235,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(ellipse 900px 500px at 50% -40px,rgba(22,41,75,.55) 0%,transparent 70%);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--cream);min-height:100vh;
+}
+
+/* â”€â”€ top bar â”€â”€ */
+.tb{
+  position:sticky;top:0;z-index:200;
+  height:50px;
+  background:rgba(4,12,24,.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(176,141,69,.11);
+  display:flex;align-items:center;padding:0 26px;gap:13px;
+}
+.gem{color:var(--gold);font-size:8px;line-height:1;}
+.bname{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:13.5px;font-weight:400;
+  letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--cream);opacity:.88;
+}
+.sep{width:1px;height:15px;background:rgba(176,141,69,.22);flex-shrink:0;}
+.btag{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.7;}
+.tbr{margin-left:auto;}
+.sw{
+  display:flex;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(176,141,69,.18);
+  border-radius:5px;padding:3px;gap:2px;
+}
+.swb{
+  padding:4px 13px;border:none;background:transparent;
+  font-family:'Inter',sans-serif;font-size:9.5px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;border-radius:3px;
+  transition:all .16s;
+}
+.swb.on{background:var(--gold);color:#fff;}
+.swb:not(.on):hover{color:var(--cream);}
+
+/* â”€â”€ stage â”€â”€ */
+.stage{display:flex;justify-content:center;padding:36px 20px 40px;}
+
+/* â”€â”€ email client frame â”€â”€ */
+.cf{
+  width:100%;max-width:680px;
+  border-radius:9px;overflow:hidden;
+  box-shadow:
+    0 0 0 1px rgba(176,141,69,.1),
+    0 4px 12px rgba(0,0,0,.35),
+    0 24px 60px rgba(0,0,0,.55),
+    0 60px 120px rgba(0,0,0,.28);
+  transition:max-width .3s cubic-bezier(.25,.46,.45,.94);
+}
+.cf.mob{max-width:400px;}
+
+/* â”€â”€ window chrome â”€â”€ */
+.wc{
+  height:34px;background:#1D2D40;
+  display:flex;align-items:center;padding:0 11px;
+  border-bottom:1px solid rgba(0,0,0,.28);
+}
+.dots{display:flex;gap:6px;}
+.dt{width:11px;height:11px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.wt{
+  flex:1;text-align:center;font-size:11px;
+  color:rgba(255,255,255,.36);letter-spacing:.3px;
+  margin-right:29px;
+}
+
+/* â”€â”€ inbox metadata â”€â”€ */
+.ih{
+  background:#111E2B;
+  border-bottom:1px solid rgba(0,0,0,.22);
+  padding:11px 17px 10px;
+}
+.fr{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.fa{
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,#B08D45,#7A6030);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:14px;
+  color:#fff;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.fi{flex:1;min-width:0;}
+.fn{font-size:12px;font-weight:500;color:rgba(247,243,235,.88);line-height:1.3;}
+.fe{font-size:10px;color:var(--muted);margin-top:1px;}
+.fd{font-size:10px;color:var(--muted);white-space:nowrap;}
+.sub{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:15px;font-weight:500;color:var(--cream);
+  letter-spacing:.2px;line-height:1.35;
+}
+.pre{font-size:10px;color:var(--muted);margin-top:3px;font-style:italic;}
+
+/* â”€â”€ email iframe â”€â”€ */
+.ef{display:block;width:100%;border:none;background:#EFE9DE;}
+</style>
+</head>
+<body>
+
+<header class="tb">
+  <span class="gem">&#9670;</span>
+  <span class="bname">Betteridge Sapphires</span>
+  <span class="sep"></span>
+  <span class="btag">Welcome Flow Preview</span>
+  <div class="tbr">
+    <div class="sw">
+      <button class="swb on" id="bd" onclick="sw('d')">Desktop</button>
+      <button class="swb" id="bm" onclick="sw('m')">Mobile</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="cf" id="cf">
+
+    <div class="wc">
+      <div class="dots">
+        <div class="dt dr"></div>
+        <div class="dt dy"></div>
+        <div class="dt dg"></div>
+      </div>
+      <div class="wt">Inbox &#8212; Gmail</div>
+    </div>
+
+    <div class="ih">
+      <div class="fr">
+        <div class="fa">B</div>
+        <div class="fi">
+          <div class="fn">Matt &amp; Amber &#8212; Betteridge Sapphires</div>
+          <div class="fe">contact@betteridgesapphires.com.au</div>
+        </div>
+        <div class="fd">Today, 9:14 AM</div>
+      </div>
+      <div class="sub">We quit our jobs to chase the sapphire dream</div>
+      <div class="pre">Most people ignore the feeling. We didn&#39;t.</div>
+    </div>
+
+    <iframe
+      id="ef"
+      class="ef"
+      srcdoc="&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; lang=&quot;en-AU&quot;&gt;
+&lt;head&gt;
+&lt;base href=&quot;https://aenetworks07.github.io/betteridge-preview/&quot;&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no,address=no,email=no,date=no&quot;&gt;
+&lt;meta name=&quot;color-scheme&quot; content=&quot;light only&quot;&gt;
+&lt;meta name=&quot;supported-color-schemes&quot; content=&quot;light only&quot;&gt;
+&lt;title&gt;We quit our jobs to chase the sapphire dream&lt;/title&gt;
+
+&lt;!--[if mso]&gt;
+&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;
+&lt;style&gt;
+  table,td,div,p,a {font-family:Georgia,'Times New Roman',serif !important;}
+  .sans, .sans * {font-family:Arial,Helvetica,sans-serif !important;}
+&lt;/style&gt;
+&lt;![endif]--&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+  /* ---- resets ---- */
+  html,body {margin:0 !important; padding:0 !important; height:100% !important; width:100% !important;}
+  *{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;}
+  table,td{mso-table-lspace:0pt !important; mso-table-rspace:0pt !important; border-collapse:collapse !important;}
+  img{-ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; display:block;}
+  a{text-decoration:none;}
+  /* iOS blue-links fix */
+  a[x-apple-data-detectors]{color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important;}
+  /* Gmail/Outlook.com forced dark mode: keep the paper cream */
+  u + #body .paper{background-color:#F7F3EB !important;}
+
+  /* ---- mobile ---- */
+  @media only screen and (max-width:620px){
+    .wrap{width:100% !important; max-width:100% !important;}
+    .fluid{width:100% !important; max-width:100% !important; height:auto !important;}
+    .pad{padding-left:24px !important; padding-right:24px !important;}
+    .h1{font-size:28px !important; line-height:35px !important;}
+    .h2{font-size:23px !important; line-height:30px !important;}
+    .vr{border-left:0 !important;}
+    .ctacol{max-width:100% !important; text-align:center !important;}
+    .ctabtn{display:block !important; width:auto !important;}
+    .btncell{padding:15px 18px !important;}
+    .btnlink{font-size:13px !important; letter-spacing:1.5px !important;}
+    .avatar{margin:0 auto 18px auto !important;}
+    .sigimg{margin-left:auto !important; margin-right:auto !important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body id=&quot;body&quot; style=&quot;margin:0; padding:0; background-color:#EFE9DE;&quot;&gt;
+
+&lt;!-- preheader: shows in the inbox next to the subject line, invisible in the email --&gt;
+&lt;div style=&quot;display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all; font-family:Arial,sans-serif; color:#EFE9DE;&quot;&gt;
+  Most people ignore the feeling. We didn't.
+  &amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;&amp;#847;&amp;zwnj;&amp;nbsp;
+&lt;/div&gt;
+
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;background-color:#EFE9DE;&quot;&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot; style=&quot;padding:0;&quot;&gt;
+
+  &lt;!--[if mso]&gt;&lt;table role=&quot;presentation&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;&lt;![endif]--&gt;
+  &lt;table role=&quot;presentation&quot; class=&quot;wrap paper&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;width:100%; max-width:600px; background-color:#F7F3EB;&quot;&gt;
+
+    &lt;!-- ============ GOLD TOP ACCENT ============ --&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;height:3px; background-color:#B08D45; font-size:0; line-height:0;&quot;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ LOGO ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper&quot; style=&quot;background-color:#F7F3EB; padding:30px 24px 26px 24px;&quot;&gt;
+        &lt;a href=&quot;https://www.betteridgesapphires.com.au&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src=&quot;images/logo.png&quot; width=&quot;300&quot; height=&quot;62&quot; alt=&quot;Betteridge Sapphires&quot; style=&quot;display:block; width:300px; max-width:300px; height:auto;&quot;&gt;
+        &lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ HERO ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; style=&quot;padding:0; font-size:0; line-height:0;&quot;&gt;
+        &lt;img src=&quot;images/hero.jpg&quot; width=&quot;600&quot; height=&quot;460&quot; class=&quot;fluid&quot; alt=&quot;Matt and Amber Betteridge holding their two kids at the family mining claim. A family. A mine. A dream worth chasing.&quot; style=&quot;display:block; width:100%; max-width:600px; height:auto;&quot;&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ HEADLINE ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper pad&quot; style=&quot;background-color:#F7F3EB; padding:48px 60px 0 60px;&quot;&gt;
+        &lt;p class=&quot;sans&quot; style=&quot;margin:0 0 14px 0; font-family:Arial,Helvetica,sans-serif; font-size:10px; line-height:14px; letter-spacing:3.5px; color:#B08D45; text-transform:uppercase;&quot;&gt;The Origin Story&lt;/p&gt;
+        &lt;h1 class=&quot;h1&quot; style=&quot;margin:0; font-family:Georgia,'Times New Roman',serif; font-size:38px; line-height:47px; letter-spacing:1px; font-weight:normal; color:#16294B; text-transform:uppercase;&quot;&gt;We quit our jobs&lt;/h1&gt;
+        &lt;h2 class=&quot;h2&quot; style=&quot;margin:8px 0 0 0; font-family:Georgia,'Times New Roman',serif; font-size:30px; line-height:38px; letter-spacing:0.5px; font-weight:normal; color:#B08D45; text-transform:uppercase;&quot;&gt;To chase the sapphire dream.&lt;/h2&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ornamental separator --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper&quot; style=&quot;background-color:#F7F3EB; padding:20px 0 28px 0;&quot;&gt;
+        &lt;div style=&quot;font-family:Georgia,'Times New Roman',serif; font-size:14px; line-height:1; color:#B08D45; letter-spacing:5px;&quot;&gt;&amp;mdash;&amp;nbsp;&amp;#9670;&amp;nbsp;&amp;mdash;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ BODY COPY, PART 1 ============ --&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;paper pad sans&quot; style=&quot;background-color:#F7F3EB; padding:0 60px; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:27px; color:#333333;&quot;&gt;
+        &lt;p style=&quot;margin:0 0 20px 0; font-weight:bold; font-size:17px; line-height:28px; color:#16294B;&quot;&gt;Have you ever had the feeling that you should quit your job and do something completely random?&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;Most people ignore it.&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;We didn&amp;rsquo;t.&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;In 2012, we went fossicking in the Central Queensland Gemfields.&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;We found a few sapphires.&lt;br&gt;It changed our life, we were addicted.&lt;/p&gt;
+        &lt;p style=&quot;margin:0;&quot;&gt;And in 2021, we made the very sensible decision to quit our jobs and &lt;strong style=&quot;color:#16294B;&quot;&gt;chase sapphires full-time.&lt;/strong&gt;&lt;/p&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ TRUST ICON ROW ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper&quot; style=&quot;background-color:#F7F3EB; padding:34px 20px 30px 20px; font-size:0; line-height:0;&quot;&gt;
+
+        &lt;!--[if mso]&gt;&lt;table role=&quot;presentation&quot; width=&quot;524&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/icon-australia.png&quot; width=&quot;42&quot; height=&quot;42&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:42px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:10px; line-height:15px; letter-spacing:1.2px; color:#16294B; padding-top:12px;&quot;&gt;AUSTRALIAN OWNED&lt;br&gt;AND OPERATED&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #DCC79A;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/icon-mine-to-market.png&quot; width=&quot;42&quot; height=&quot;42&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:42px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:10px; line-height:15px; letter-spacing:1.2px; color:#16294B; padding-top:12px;&quot;&gt;MINE TO&lt;br&gt;MARKET&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #DCC79A;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/icon-no-showroom.png&quot; width=&quot;42&quot; height=&quot;42&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:42px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:10px; line-height:15px; letter-spacing:1.2px; color:#16294B; padding-top:12px;&quot;&gt;NO SHOWROOM&lt;br&gt;OVERHEADS&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #DCC79A;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/icon-family.png&quot; width=&quot;42&quot; height=&quot;42&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:42px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:10px; line-height:15px; letter-spacing:1.2px; color:#16294B; padding-top:12px;&quot;&gt;JUST A FAMILY,&lt;br&gt;A MINE &amp;amp; A DREAM&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;
+        &lt;!--[if mso]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ BODY COPY, PART 2 ============ --&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;paper pad sans&quot; style=&quot;background-color:#F7F3EB; padding:0 60px; font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:27px; color:#333333;&quot;&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;Just Matt and Amber, &lt;strong style=&quot;color:#1F1F1F;&quot;&gt;two kids,&lt;/strong&gt; a mining claim and a fairly unreasonable belief that we could build something special from the stones beneath our feet.&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0; text-align:center; font-family:Georgia,'Times New Roman',serif; font-size:19px; line-height:27px; color:#16294B; font-weight:normal; letter-spacing:0.3px; font-style:italic;&quot;&gt;That became Betteridge Sapphires.&lt;/p&gt;
+        &lt;p style=&quot;margin:0 0 20px 0;&quot;&gt;Today, we mine our own sapphires and work directly with trusted miners from the Central Queensland Gemfields.&lt;/p&gt;
+        &lt;p style=&quot;margin:0;&quot;&gt;Then we turn those stones into Australian jewellery made to last a lifetime.&lt;/p&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ HANDWRITTEN LINE ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper pad&quot; style=&quot;background-color:#F7F3EB; padding:26px 40px 30px 40px; font-size:0; line-height:0;&quot;&gt;
+        &lt;img src=&quot;images/script-not-boring.png&quot; width=&quot;330&quot; height=&quot;58&quot; alt=&quot;It has not always been sensible. But it has never been boring.&quot; style=&quot;display:block; margin:0 auto; width:330px; max-width:100%; height:auto;&quot;&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ PHOTO + CTA ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;paper&quot; style=&quot;background-color:#F7F3EB; padding:0 40px 6px 40px; font-size:0; line-height:0;&quot;&gt;
+
+        &lt;!--[if mso]&gt;&lt;table role=&quot;presentation&quot; width=&quot;520&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td width=&quot;130&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top;&quot;&gt;
+          &lt;img src=&quot;images/matt-amber-round.png&quot; width=&quot;112&quot; height=&quot;112&quot; class=&quot;avatar&quot; alt=&quot;Matt and Amber Betteridge&quot; style=&quot;display:block; margin:0 auto; width:112px; height:112px;&quot;&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;380&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;ctacol&quot; style=&quot;display:inline-block; width:100%; max-width:380px; vertical-align:top; text-align:left;&quot;&gt;
+
+          &lt;!-- bulletproof button (square corners = no VML needed) --&gt;
+          &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;margin:0 0 20px 0;&quot; class=&quot;ctabtn&quot;&gt;&lt;tr&gt;
+            &lt;td align=&quot;center&quot; bgcolor=&quot;#B08D45&quot; class=&quot;btncell&quot; style=&quot;background-color:#B08D45; padding:17px 42px;&quot;&gt;
+              &lt;a href=&quot;https://www.betteridgesapphires.com.au/about&quot; target=&quot;_blank&quot; class=&quot;sans btnlink&quot; style=&quot;display:inline-block; white-space:nowrap; font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:18px; letter-spacing:2.5px; font-weight:bold; color:#FFFFFF; text-decoration:none;&quot;&gt;MEET THE BETTERIDGES&amp;nbsp;&amp;nbsp;&amp;rarr;&lt;/a&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;&lt;/table&gt;
+
+          &lt;div style=&quot;font-family:Georgia,'Times New Roman',serif; font-size:15px; line-height:22px; color:#333333; font-style:italic;&quot;&gt;With love,&lt;/div&gt;
+          &lt;img src=&quot;images/signature.png&quot; width=&quot;190&quot; height=&quot;46&quot; alt=&quot;Matt &amp;amp; Amber&quot; class=&quot;sigimg&quot; style=&quot;display:block; margin:6px 0 12px 0; width:190px; max-width:100%; height:auto;&quot;&gt;
+
+        &lt;/div&gt;
+        &lt;!--[if mso]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ P.S. ============ --&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;paper pad sans&quot; style=&quot;background-color:#F7F3EB; padding:8px 60px 44px 60px; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:21px; color:#4A4A4A;&quot;&gt;
+        &lt;div style=&quot;border-left:2px solid #B08D45; padding-left:14px;&quot;&gt;
+          &lt;p style=&quot;margin:0; font-style:italic;&quot;&gt;P.S. In the next email, we&amp;rsquo;ll take you underground and show you where the sapphires actually come from.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- gold bottom accent --&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;height:2px; background-color:#B08D45; font-size:0; line-height:0;&quot;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ NAVY VALUE BAR ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; bgcolor=&quot;#16294B&quot; style=&quot;background-color:#16294B; padding:26px 20px 22px 20px; font-size:0; line-height:0;&quot;&gt;
+
+        &lt;!--[if mso]&gt;&lt;table role=&quot;presentation&quot; width=&quot;524&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/f-icon-ethical.png&quot; width=&quot;30&quot; height=&quot;30&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:30px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:9px; line-height:14px; letter-spacing:1.1px; color:#F7F3EB; padding-top:10px;&quot;&gt;ETHICAL AUSTRALIAN&lt;br&gt;SAPPHIRES&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #3B4C6B;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/f-icon-made.png&quot; width=&quot;30&quot; height=&quot;30&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:30px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:9px; line-height:14px; letter-spacing:1.1px; color:#F7F3EB; padding-top:10px;&quot;&gt;AUSTRALIAN MADE&lt;br&gt;JEWELLERY&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #3B4C6B;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/f-icon-warranty.png&quot; width=&quot;30&quot; height=&quot;30&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:30px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:9px; line-height:14px; letter-spacing:1.1px; color:#F7F3EB; padding-top:10px;&quot;&gt;LIFETIME&lt;br&gt;WARRANTY&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;&lt;!--
+        --&gt;&lt;!--[if mso]&gt;&lt;/td&gt;&lt;td width=&quot;131&quot; valign=&quot;top&quot;&gt;&lt;![endif]--&gt;
+        &lt;div class=&quot;vr&quot; style=&quot;display:inline-block; width:100%; max-width:130px; vertical-align:top; border-left:1px solid #3B4C6B;&quot;&gt;
+          &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 8px;&quot;&gt;
+            &lt;img src=&quot;images/f-icon-shipping.png&quot; width=&quot;30&quot; height=&quot;30&quot; alt=&quot;&quot; style=&quot;display:block; margin:0 auto; width:30px; height:auto;&quot;&gt;
+            &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:9px; line-height:14px; letter-spacing:1.1px; color:#F7F3EB; padding-top:10px;&quot;&gt;FREE EXPRESS SHIPPING&lt;br&gt;AUSTRALIA WIDE&lt;/div&gt;
+          &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;/div&gt;
+        &lt;!--[if mso]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ NAVY STRAPLINE ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; bgcolor=&quot;#16294B&quot; style=&quot;background-color:#16294B; border-top:1px solid #2B3E60; padding:12px 20px 14px 20px;&quot;&gt;
+        &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:9px; line-height:14px; letter-spacing:2.5px; color:#B08D45;&quot;&gt;&amp;#9670;&amp;nbsp;&amp;nbsp;MINE TO MARKET AUSTRALIAN SAPPHIRE JEWELLERY&amp;nbsp;&amp;nbsp;&amp;#9670;&lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;!-- ============ LEGAL FOOTER (required by Klaviyo + Spam Act 2003) ============ --&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot; class=&quot;pad&quot; style=&quot;background-color:#EFE9DE; padding:26px 40px 34px 40px;&quot;&gt;
+        &lt;div class=&quot;sans&quot; style=&quot;font-family:Arial,Helvetica,sans-serif; font-size:11px; line-height:19px; color:#6B6257;&quot;&gt;
+          You&amp;rsquo;re getting this because you signed up at betteridgesapphires.com.au.&lt;br&gt;
+          Betteridge Sapphires, Queensland, Australia&lt;br&gt;&lt;br&gt;
+          &lt;a href=&quot;#&quot; target=&quot;_blank&quot; style=&quot;color:#6B6257; text-decoration:underline;&quot;&gt;Unsubscribe&lt;/a&gt;
+          &amp;nbsp;&amp;middot;&amp;nbsp;
+          &lt;a href=&quot;#&quot; target=&quot;_blank&quot; style=&quot;color:#6B6257; text-decoration:underline;&quot;&gt;Update your preferences&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+  &lt;/table&gt;
+  &lt;!--[if mso]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;script&gt;window.addEventListener(&quot;load&quot;,function(){var r=function(){window.parent.postMessage({bsH:document.body.scrollHeight},&quot;*&quot;);};r();setTimeout(r,350);setTimeout(r,950);window.addEventListener(&quot;resize&quot;,r);})&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"
+      scrolling="no"
+      title="Email 1 - The Origin Story">
+    </iframe>
+
+  </div>
+</main>
+
+<script>
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.bsH) {
+    document.getElementById('ef').style.height = e.data.bsH + 'px';
+  }
+});
+function sw(m) {
+  var c = document.getElementById('cf');
+  var d = document.getElementById('bd');
+  var mb = document.getElementById('bm');
+  if (m === 'm') {
+    c.classList.add('mob'); mb.classList.add('on'); d.classList.remove('on');
+  } else {
+    c.classList.remove('mob'); d.classList.add('on'); mb.classList.remove('on');
+  }
+}
+</script>
+
+</body>
+</html>
